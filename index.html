@@ -29,7 +29,7 @@
         }
         
         main > section {
-          border: .2em black dotted;
+          border: .2em black double;
           padding: 1em;
           padding-top: 0;
         }
@@ -91,11 +91,11 @@
 
 <body>
     <header>
-        <h1>San Francisco Computing Club</h1>
+        <h1>San Francisco Systems Club</h1>
 
-        <pre>
-            ^^
-            ^^      ..                                       ..
+        <pre id="bridge">
+            ^^                                                             
+                    ..                               ^^      ..
                     []                                       []
                   .:[]:_          ^^                       ,:[]:.
                 .: :[]: :-.                             ,-: :[]: :.
@@ -115,22 +115,92 @@
         </pre>
     </header>
     <main>
-        
         <section>
             <h2>Who are we?</h2>
-    
-            <p>Placeholder text. This is where the main content goes.</p>
+
+            <p>We're a group of systems developers who love computing—from hardware to software, from theory to practice. We hold particular interest in the following fields: </p>
+
             <ul>
-                <li>Bullet point 1</li>
-                <li>Bullet point 2</li>
-                <li>Bullet point 3</li>
+                <li>Distributed and concurrent data systems</li>
+                <li>Formal methods (e.g. modelling, verification)</li>
+                <li>Compiler/language design and implementation</li>
+                <li>OS/virtual machine development</li>
             </ul>
+
+            We love to share and hear about tough problems in these spaces from other fellow computer scientists. We hope that frequent, in-person discussion of these topics lead to exciting new ideas and projects in these fields.
         </section>
+
+        <section>
+          <h2>What, when, and where?</h2>
+
+          <p>
+            We'll meet once to twice a month at 10am at the Main Plaza of Salesforce Park. The exact date will vary by month, and in case of rain, we'll find a suitable indoor  <a href="https://downtownsf.org/things-to-do/public-open-spaces">Public Outdoor Space</a> nearby.
+          </p>
+
+          <p>
+            After meetings take place, participants can submit add what they discussed to our <a>Changelog</a> so that future attendees can get a sense of what all was discussed.
+          </p>
+        </section>        
+
         <section>
             <h2>Interested in joining?</h2>
-            <p>You can sign up for our mailing list <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg4E_NVCatS0xH55gCAIBx4VXVPdA5DCNigXhpVtRRTxuBiA/viewform">here</a>.</p>        
+            <p>You can sign up for our mailing list <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg4E_NVCatS0xH55gCAIBx4VXVPdA5DCNigXhpVtRRTxuBiA/viewform">here</a>. Invites for August will go out in late July.</p>
         </section>
     </main>
+
+    <script>
+      function replaceAt(string, index, replacement) {
+        return string.substring(0, index) + replacement + string.substring(index + replacement.length);
+      }
+
+      const TOP_CLOUD_LINES_TO_ANIMATE = 3
+      const MS_BETWEEN_FRAMES = 1000
+
+      const originalLines = document.getElementById('bridge').innerText.split('\n');
+
+      let tick = 0
+      setInterval(() => {
+        const newLines = originalLines.map((line, lineIndex) => {
+          if (lineIndex > TOP_CLOUD_LINES_TO_ANIMATE) {
+            return line;
+          }
+
+          // In case a cloud doesn't exist on the first TOP_CLOUD_LINES_TO_ANIMATE lines,
+          // don't animate it.
+          const originalIndex = line.indexOf('^^');
+          if (originalIndex === -1) {
+            return line;
+          }
+
+          // Step 1: Remove the original clouds from the line
+          let lineWithoutOriginalClouds = line.slice(0, originalIndex) + '  ' + line.slice(originalIndex + 2);
+
+          // Step 2: Compute where the new clouds should be
+          const cloudStart = (originalIndex + tick) % line.length;
+          const cloudEnd = (cloudStart + 1) % line.length;
+
+          // Step 3: Don't show partial clouds
+          let isAtBoundary = false
+          if (cloudStart === line.length - 1 || cloudEnd === 0) {
+            isAtBoundary = true
+          }
+
+          // Step 4: Insert the clouds' modified location
+          let linesWithModifiedClouds = lineWithoutOriginalClouds;
+          if (!isAtBoundary) {
+            lineWithoutOriginalClouds = replaceAt(lineWithoutOriginalClouds, cloudStart, '^');
+            lineWithoutOriginalClouds = replaceAt(lineWithoutOriginalClouds, cloudEnd, '^');
+          }
+
+          return lineWithoutOriginalClouds
+        });
+
+        document.getElementById('bridge').innerText = newLines.join('\n');
+        tick += 1
+      }, MS_BETWEEN_FRAMES)
+
+    </script>
+
     <!-- <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
