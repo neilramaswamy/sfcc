@@ -67,13 +67,11 @@
   
         a {
           color: blue;
-          background-color: rgba(0,0,0,0.1);
-          text-decoration: none;
         }
   
         a:hover {
           text-decoration-line: underline;
-          text-decoration-style: dotted;
+          text-decoration-style: double;
         }
   
         dd > p:first-child {
@@ -85,7 +83,13 @@
         }
         dd a {
           background-color: rgba(0,0,0,0.05);
-        }  
+        } 
+
+        footer {
+          display: flex;
+          justify-content: center;
+          margin-top: 24px;
+        }
       </style>
 </head>
 
@@ -111,7 +115,7 @@
          ~~^-~^_~^~/  \~^-~^~_~^-~_^~-^~_^~~-^~_~^~-~_~-^~_^/  \~^-~_~^-~~-
         ~ _~~- ~^-^~-^~~- ^~_^-^~~_ -~^_ -~_-~~^- _~~_~-^_ ~^-^~~-_^-~ ~^
            ~ ^- _~~_-  ~~ _ ~  ^~  - ~~^ _ -  ^~-  ~ _  ~~^  - ~_   - ~^_~
-             ~-  ^_  ~^ -  ^~ _ - ~^~ _   _~^~-  _ ~~^ - _ ~ - _ ~~^ -
+       aac .  ~-  ^_  ~^ -  ^~ _ - ~^~ _   _~^~-  _ ~~^ - _ ~ - _ ~~^ -
         </pre>
     </header>
     <main>
@@ -131,22 +135,34 @@
         </section>
 
         <section>
-          <h2>What, when, and where?</h2>
+          <h2>Evening Talk Series</h2>
 
           <p>
-            We'll meet once to twice a month at 10am at the Main Plaza of Salesforce Park. The exact date will vary by month, and in case of rain, we'll find a suitable indoor  <a href="https://downtownsf.org/things-to-do/public-open-spaces">Public Outdoor Space</a> nearby.
+            Once every 2 months, we hold an evening of long-form and lightning talks. We provide food and drinks, and there will be plenty of time before and after the presentations to talk with one another. At our last installment, Julian Hyde presented his paper <a target="_blank" href="https://arxiv.org/pdf/2406.00251">Measures in SQL</a>, and Conor Power presented his work on <a target="_blank" href="https://dl.acm.org/doi/pdf/10.1145/3642976.3653031">safer eventual consistency</a>.
           </p>
 
           <p>
-            After meetings take place, participants can submit add what they discussed to our <a>Changelog</a> so that future attendees can get a sense of what all was discussed.
+            Our next event is on August 28th, 2024. You can sign up for the event on our <a target="_blank" href="https://lu.ma/x17bg5fh">lu.ma page</a>
           </p>
-        </section>        
+        </section>
 
         <section>
-            <h2>Interested in joining?</h2>
-            <p>You can sign up for our mailing list <a href="https://docs.google.com/forms/d/e/1FAIpQLSeg4E_NVCatS0xH55gCAIBx4VXVPdA5DCNigXhpVtRRTxuBiA/viewform">here</a>. Invites for August will go out in late July.</p>
-        </section>
+          <h2>Morning Coffee Chats</h2>
+
+          <p>
+            We also meet once a month at 10am to chat about systems over coffee (or your morning beverage of choice). The exact location and date will vary by month, and in case of rain, we'll find a suitable indoor <a target="_blank" href="https://downtownsf.org/things-to-do/public-open-spaces">Public Open Space</a> nearby.
+
+          </p>
+
+          <p>
+            Our next coffee chat is on September 6th, 2024. You can sign up for it <a target="_blank" href="https://lu.ma/kumzica3">here</a>.
+          </p>
+        </section>        
     </main>
+
+    <footer>
+      <small>Thanks to <a target="_blank" href="https://jack.wrenn.fyi/">Jack Wrenn</a> and <a target="_blank" href="https://luu.dev/">Nathan Benavidez-Luu</a> for inspiring the look and feel of the site.</small>
+    </footer>
 
     <script>
       function replaceAt(string, index, replacement) {
